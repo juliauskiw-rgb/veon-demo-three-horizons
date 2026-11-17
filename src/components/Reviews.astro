@@ -1,0 +1,26 @@
+---
+import Section from "./Section.astro";
+import { reviews } from "../data/site";
+const [lead, ...rest] = reviews;
+---
+<Section id="reviews" rec="R-007" class="reviews">
+  <div class="wrap grid reviews__grid">
+    <div class="reviews__main">
+      <h2 class="h2">Відгуки пацієнтів</h2>
+      <figure class="review review--lead" lang={lead.lang}>
+        <blockquote><p>{lead.text}</p></blockquote>
+        <figcaption lang="uk"><span class="review__author">{lead.author}</span> <span class="review__src">відгук з Google</span></figcaption>
+      </figure>
+    </div>
+    <ul class="reviews__rest on-axis">
+      {rest.map((r) => (
+        <li>
+          <figure class="review" lang={r.lang}>
+            <blockquote><p>{r.text}</p></blockquote>
+            <figcaption lang="uk"><span class="review__author">{r.author}</span> <span class="review__src">відгук з Google</span></figcaption>
+          </figure>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Section>

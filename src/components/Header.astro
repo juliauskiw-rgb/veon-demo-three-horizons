@@ -1,0 +1,41 @@
+---
+import Icon from "./Icon.astro";
+import { asset, contacts, nav } from "../data/site";
+---
+<header class="site-header" data-header data-rec="R-002">
+  <div class="wrap site-header__bar">
+    <a class="site-header__logo" href="#hero" aria-label="Лікар ортопед-травматолог Величко В. М., на початок сторінки">
+      <img src={asset("images/logo.webp")} width="223" height="65" alt="" decoding="async" />
+    </a>
+    <nav class="site-nav" aria-label="Розділи сторінки">
+      <ul class="site-nav__list">
+        {nav.map((n) => <li><a class="site-nav__link" href={n.href}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      <a class="site-header__phone tnum" href={contacts.phoneHref}>{contacts.phoneText}</a>
+      <a class="site-header__call" href={contacts.phoneHref} aria-label={`Подзвонити ${contacts.phoneText}`}><Icon name="phone" size={22} /></a>
+      <a class="btn btn--line btn--sm site-header__tg" href={contacts.telegram} rel="noopener" target="_blank"><Icon name="telegram" /><span>Написати в Telegram</span></a>
+      <button class="site-header__menu" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
+        <Icon name="menu" size={22} /><span class="site-header__menu-text">Меню</span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" data-menu hidden>
+    <div class="mobile-menu__inner">
+      <div class="mobile-menu__top">
+        <span class="mobile-menu__title">Меню</span>
+        <button class="mobile-menu__close" type="button" data-menu-close aria-label="Закрити меню"><Icon name="close" size={24} /></button>
+      </div>
+      <nav aria-label="Меню">
+        <ul class="mobile-menu__list">
+          {nav.map((n) => <li><a class="mobile-menu__link" href={n.href} data-menu-link>{n.label}</a></li>)}
+        </ul>
+      </nav>
+      <div class="mobile-menu__actions">
+        <a class="btn btn--solid" href={contacts.phoneHref}><Icon name="phone" /><span>Подзвонити</span><span class="btn__extra tnum">{contacts.phoneText}</span></a>
+        <a class="btn btn--line" href={contacts.telegram} rel="noopener" target="_blank"><Icon name="telegram" /><span>Написати в Telegram</span></a>
+      </div>
+    </div>
+  </div>
+</header>

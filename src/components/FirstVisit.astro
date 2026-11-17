@@ -1,0 +1,47 @@
+---
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { contacts, firstVisitSteps } from "../data/site";
+---
+<Section id="first-visit" rec="R-004" class="visit">
+  <div class="wrap grid visit__grid">
+    <div class="visit__main">
+      <h2 class="h2 visit__title">Перший прийом: це вже лікування, а не лише направлення</h2>
+      <p class="visit__intro">Багато пацієнтів думають, що перший прийом, це лише консультація і направлення на обстеження. У нас ви отримуєте не тільки діагноз, а й допомогу вже під час першого візиту.</p>
+    </div>
+
+    <div class="visit__prices on-axis">
+      <div class="price">
+        <p class="price__sum tnum">1000 грн</p>
+        <p class="price__what">Амбулаторний прийом + УЗД суглобів</p>
+        <p class="price__term">Ціна діє до 30.11.2026</p>
+      </div>
+      <div class="price">
+        <p class="price__sum tnum">1000 грн</p>
+        <p class="price__what">Онлайн-консультація лікаря</p>
+        <p class="price__term">Домовитися про консультацію можна в Telegram або телефоном.</p>
+        <a class="btn btn--line" href={contacts.telegram} rel="noopener" target="_blank"><Icon name="telegram" /><span>Написати в Telegram</span></a>
+      </div>
+    </div>
+
+    <div class="visit__flow">
+      <h3 class="visit__subtitle">Що входить у первинний прийом</h3>
+      <div class="route" data-reveal="route">
+        <span class="route__track" aria-hidden="true"></span>
+        <ol class="route__list">
+        {firstVisitSteps.map((step, i) => (
+          <li class:list={["route__stop", { "route__stop--final": i === firstVisitSteps.length - 1 }]} style={`--i:${i}`}>
+            <span class="route__mark" aria-hidden="true"></span>
+            <span class="route__text">{step}</span>
+          </li>
+        ))}
+        </ol>
+      </div>
+      <div class="visit__cta">
+        <a class="btn btn--solid" href={contacts.phoneHref}><Icon name="phone" /><span>Подзвонити</span></a>
+        <FutureLink class="visit__more">Всі ціни</FutureLink>
+      </div>
+    </div>
+  </div>
+</Section>

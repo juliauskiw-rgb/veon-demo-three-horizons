@@ -1,0 +1,65 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import FirstVisit from "../components/FirstVisit.astro";
+import Services from "../components/Services.astro";
+import Likar from "../components/Likar.astro";
+import Reviews from "../components/Reviews.astro";
+import Contacts from "../components/Contacts.astro";
+import Footer from "../components/Footer.astro";
+import MobileBar from "../components/MobileBar.astro";
+import { contacts, socials } from "../data/site";
+
+const title = "Ортопед-травматолог у Києві | Величко В. М. — Ортопедія VIP";
+const description = "Ортопед-травматолог у Києві: ін'єкції під УЗД, PRP, лікування болю в спині та суглобах. Дорослі та діти від 5 років. Запис: +38 067 888 98 32.";
+
+// SEO-R005 (client decision; recommended variant shown): MedicalClinic + Physician, no AggregateRating / FAQPage.
+const address = {
+  "@type": "PostalAddress",
+  streetAddress: "вул. Михайла Бойчука, 1/2",
+  addressLocality: "Київ",
+  addressCountry: "UA",
+};
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalClinic",
+      "@id": "#clinic",
+      name: "Ортопедія VIP",
+      description: "Медичний центр лікаря ортопеда-травматолога Величка В. М.: консервативне лікування болю в спині, шиї та суглобах, ін'єкції під УЗД, PRP. Дорослі та діти від 5 років.",
+      telephone: "+380678889832",
+      email: contacts.email,
+      address,
+      areaServed: { "@type": "City", name: "Київ" },
+      medicalSpecialty: "https://schema.org/Musculoskeletal",
+      sameAs: socials.map((s) => s.href),
+    },
+    {
+      "@type": "Physician",
+      "@id": "#physician",
+      name: "Величко Вячеслав Миколайович",
+      description: "Лікар ортопед-травматолог для дорослих і дітей від 5 років, 28 років практики.",
+      medicalSpecialty: "https://schema.org/Musculoskeletal",
+      telephone: "+380678889832",
+      address,
+      parentOrganization: { "@id": "#clinic" },
+    },
+  ],
+};
+---
+<Base lang="uk" title={title} description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Header slot="header" />
+  <div class="axis" aria-hidden="true"></div>
+  <Hero />
+  <FirstVisit />
+  <Services />
+  <Likar />
+  <Reviews />
+  <Contacts />
+  <Footer slot="footer" />
+  <MobileBar slot="footer" />
+  <script src="../scripts/home.ts"></script>
+</Base>

@@ -1,0 +1,58 @@
+---
+import Section from "./Section.astro";
+import CallButtons from "./CallButtons.astro";
+import { asset, serviceGroups } from "../data/site";
+const levels = [
+  { label: "Лінія лопаток", cls: "level--1" },
+  { label: "Лінія тазу", cls: "level--2" },
+  { label: "Лінія стоп", cls: "level--3" },
+];
+---
+<Section id="hero" rec="R-001,R-013,G-R002" class="hero">
+  <div class="wrap grid hero__grid">
+    <div class="hero__text">
+      <h1 class="hero__title">
+        <span class="hero__role">Лікар ортопед-травматолог у Києві —</span>{" "}<span class="hero__name"><span>Величко</span>{" "}<span>Вячеслав</span>{" "}<span>Миколайович</span></span>
+      </h1>
+      <p class="hero__lede">Лікую біль у спині, шиї та суглобах без операцій: дорослих і дітей від 5 років. Допомога починається вже на першому прийомі.</p>
+      <CallButtons showNumber class="hero__actions" />
+      <p class="hero__price">
+        <span class="hero__price-what">Прийом + УЗД суглобів</span>
+        <strong class="hero__price-sum tnum">1000 грн</strong>
+        <span class="hero__price-term">до 30.11.2026</span>
+      </p>
+      <nav class="hero__quick" aria-label="Що турбує">
+        <span class="hero__quick-label">Що турбує:</span>
+        <ul>
+          {serviceGroups.map((g) => <li><a class="link" href={`#${g.id}`} data-group-link={g.id}>{g.tab}</a></li>)}
+        </ul>
+      </nav>
+    </div>
+
+    <figure class="axes on-axis" aria-labelledby="axes-caption">
+      <ul class="axes__levels">
+        {levels.map((l) => (
+          <li class:list={["axes__level", l.cls]}>
+            <span class="axes__line" aria-hidden="true"></span>
+            <span class="axes__label">{l.label}</span>
+          </li>
+        ))}
+      </ul>
+      <div class="axes__portrait">
+        <img
+          class="axes__img"
+          src={asset("images/likar-portrait-280.webp")}
+          srcset={`${asset("images/likar-portrait-280.webp")} 280w, ${asset("images/likar-portrait-560.webp")} 560w`}
+          sizes="(min-width: 1024px) 280px, 128px"
+          width="280"
+          height="280"
+          alt="Лікар ортопед-травматолог Вячеслав Величко"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+      <p class="axes__who"><span class="axes__who-name">Вячеслав Величко</span> <span class="axes__who-years">28 років практики</span></p>
+      <figcaption class="axes__caption" id="axes-caption">Вирівнюю три основні осі тіла: лінію лопаток, тазу та стоп</figcaption>
+    </figure>
+  </div>
+</Section>

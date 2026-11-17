@@ -1,0 +1,47 @@
+---
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import { asset } from "../data/site";
+const claims = [
+  { title: "Вирівнювання трьох осей тіла", text: "Власна методика: вирівнювання трьох основних осей тіла — лінії лопаток, тазу та стоп." },
+  { title: "Точність під контролем УЗД", text: "Кожна маніпуляція та ін'єкція проводиться під візуальним контролем УЗД. Ми не діємо «наосліп»." },
+  { title: "Спортивний підхід", text: "Методи реабілітації професійних атлетів — для пацієнтів будь-якого віку. Мета — повернення до активного життя без болю та операцій." },
+];
+const photo = (name: string, big: string, bw: number, bh: number, alt: string, cls: string, label: string) => ({ name, big, bw, bh, alt, cls, label });
+const photos = [
+  photo("shoulder-ultrasound", "800", 800, 1067, "Лікар Величко проводить УЗД плечового суглоба пацієнта", "likar__photo--top", "Лінія лопаток"),
+  photo("feet-exam", "800", 800, 1067, "Лікар оглядає стопи пацієнтки", "likar__photo--bottom", "Лінія стоп"),
+];
+---
+<Section id="likar" class="likar">
+  <div class="wrap grid likar__grid">
+    <div class="likar__main">
+      <h2 class="h2">Лікар Вячеслав Величко</h2>
+      <p class="likar__years"><span class="likar__num tnum">28</span><span class="likar__years-text">років практики: від відділення політравми БСМП до власної методики</span></p>
+      <p class="likar__bio">Я — Вячеслав Величко, практикуючий ортопед-травматолог для дорослих та дітей (від 5 років). Мій професійний шлях довжиною у 28 років розпочався у жорстких умовах відділення політравми БСМП, пройшов крізь провідні клініки країни та привів до створення власної методики.</p>
+      <ul class="claims">
+        {claims.map((c) => (
+          <li class="claims__item">
+            <h3 class="claims__title">{c.title}</h3>
+            <p class="claims__text">{c.text}</p>
+          </li>
+        ))}
+      </ul>
+      <figure class="likar__quote" data-rec="R-007">
+        <blockquote><p>Понад 50 000 вдячних пацієнтів, які повернулися до активного життя.</p></blockquote>
+        <figcaption>Вячеслав Величко</figcaption>
+      </figure>
+      <FutureLink class="likar__more">Детальніше про лікаря</FutureLink>
+    </div>
+    <div class="likar__side on-axis">
+      <figure class:list={["likar__photo", photos[0].cls]} data-reveal="fade">
+        <img src={asset(`images/${photos[0].name}-480.webp`)} srcset={`${asset(`images/${photos[0].name}-480.webp`)} 480w, ${asset(`images/${photos[0].name}-${photos[0].big}.webp`)} ${photos[0].bw}w`} sizes="(min-width: 1024px) 340px, 70vw" width="480" height="640" alt={photos[0].alt} loading="lazy" decoding="async" />
+        <figcaption>{photos[0].label}</figcaption>
+      </figure>
+      <figure class:list={["likar__photo", photos[1].cls]} data-reveal="fade">
+        <img src={asset(`images/${photos[1].name}-480.webp`)} srcset={`${asset(`images/${photos[1].name}-480.webp`)} 480w, ${asset(`images/${photos[1].name}-${photos[1].big}.webp`)} ${photos[1].bw}w`} sizes="(min-width: 1024px) 300px, 60vw" width="480" height="640" alt={photos[1].alt} loading="lazy" decoding="async" />
+        <figcaption>{photos[1].label}</figcaption>
+      </figure>
+    </div>
+  </div>
+</Section>

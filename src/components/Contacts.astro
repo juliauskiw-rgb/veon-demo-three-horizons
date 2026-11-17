@@ -1,0 +1,24 @@
+---
+import Section from "./Section.astro";
+import Icon from "./Icon.astro";
+import { contacts } from "../data/site";
+---
+<Section id="contacts" rec="R-005" class="contacts">
+  <div class="wrap grid contacts__grid">
+    <div class="contacts__main">
+      <h2 class="h2">Як записатися і де нас знайти</h2>
+      <p class="contacts__hint">Запис на прийом і онлайн-консультацію: за телефоном або в Telegram.</p>
+      <a class="contacts__phone tnum" href={contacts.phoneHref}><span class="visually-hidden">Подзвонити </span>{contacts.phoneText}</a>
+      <div class="contacts__actions">
+        <a class="btn btn--light" href={contacts.telegram} rel="noopener" target="_blank"><Icon name="telegram" /><span>Написати в Telegram</span></a>
+        <a class="link contacts__mail" href={contacts.emailHref}><Icon name="mail" /><span>{contacts.email}</span></a>
+      </div>
+    </div>
+    <address class="contacts__place on-axis">
+      <p class="contacts__city">{contacts.city}</p>
+      <p class="contacts__street">{contacts.street}</p>
+      <p class="contacts__metro">{contacts.metro}</p>
+      <a class="link contacts__map" href={contacts.map} rel="noopener" target="_blank"><Icon name="pin" /><span>Відкрити на карті</span></a>
+    </address>
+  </div>
+</Section>

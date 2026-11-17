@@ -1,0 +1,79 @@
+/* Hallmark · shape: custom · genre: modern-minimal · theme: custom · job: book · idea: "Сторінка вирівняна як тіло: одна вісь і три рівні — лопатки, таз, стопи" · vibe: "точний, спокійний, лікарський, без клінічного шаблону"
+ * paper: #EDF0F2 · accent: #E0482A · display: Geologica · body: IBM Plex Sans · hero: ім'я лікаря великим набором, дві дії й ціна зліва, схема трьох осей з портретом справа · nav: sticky, 5 якорів + телефон + Telegram · footer: світлий компактний · imagery: client photos (лише справжні) · signature: лінії осей вирівнюються, наскрізна червона вісь до телефону
+ * axes: light/geometric-sans/warm · posture: committed · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: imagery, client photos are phone shots, kept small (≤ 380 css px) and secondary to type and the axis diagram */
+/* Line 1 of this file is the Hallmark stamp (docs/process/hallmark.md); values come from design/concept.md (veon-concept). */
+:root {
+  /* Palette (veon-concept colors) */
+  --color-bg: #EDF0F2;
+  --color-ink: #102D65;
+  --color-primary: var(--color-ink);
+  --color-text: var(--color-ink);
+  --color-ink-deep: #0B1F47;
+  --color-muted: #48597A;
+  --color-muted-on-ink: #A9B8D2;
+  --color-accent: #E0482A;
+  --color-line: #B9C2CF;
+
+  /* Type (veon-concept fonts) */
+  --font-display: "Geologica", "Geologica Fallback", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Plex Fallback", system-ui, sans-serif;
+  --fw-display: 500;
+  --fw-regular: 400;
+  --fw-strong: 600;
+  --fs-14: 0.875rem;
+  --fs-body: clamp(1.0625rem, 1rem + 0.15vw, 1.125rem);
+  --fs-22: 1.375rem;
+  --fs-32: clamp(1.5rem, 1.2rem + 0.9vw, 2rem);
+  --fs-48: clamp(2rem, 1.4rem + 2vw, 3rem);
+  --fs-76: clamp(2.25rem, 1.1rem + 4.4vw, 4.75rem);
+  --fs-huge: clamp(6rem, 3rem + 10vw, 12rem);
+  --lh-text: 1.6;
+  --lh-head: 1.1;
+  --tracking-head: -0.02em;
+
+  /* Space, 8 pt rhythm */
+  --s-4: 4px;
+  --s-8: 8px;
+  --s-12: 12px;
+  --s-16: 16px;
+  --s-24: 24px;
+  --s-32: 32px;
+  --s-48: 48px;
+  --s-64: 64px;
+  --s-96: 96px;
+  --s-128: 128px;
+  --section-y: clamp(72px, 40px + 6vw, 128px);
+
+  /* Grid and the axis */
+  --container: 1360px;
+  --gutter: 24px;
+  --pad: clamp(16px, 5vw, 80px);
+  --pad-l: var(--pad);
+  --space: var(--pad);
+  --axis-w: 2px;
+  --header-h: 64px;
+  --bar-h: 68px;
+
+  /* Shape */
+  --radius: 4px;
+  --tap: 44px;
+  --btn-h: 52px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur: 600ms;
+  --dur-fast: 220ms;
+}
+
+@media (max-width: 1023.98px) {
+  :root {
+    --gutter: 16px;
+    --pad-l: 40px;
+    --pad: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root { --header-h: 80px; --btn-h: 48px; }
+}

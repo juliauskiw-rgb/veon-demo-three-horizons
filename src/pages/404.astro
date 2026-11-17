@@ -1,0 +1,11 @@
+---
+import Base from "../layouts/Base.astro";
+import { base, contacts } from "../data/site";
+---
+<Base lang="uk" title="Сторінку не знайдено — Ортопедія VIP" description="Такої сторінки немає. Поверніться на головну або зателефонуйте лікарю.">
+  <section class="notfound wrap">
+    <h1 class="h2">Такої сторінки немає</h1>
+    <p>Можливо, адресу змінено. Почніть з головної сторінки або зателефонуйте: <a class="link tnum" href={contacts.phoneHref}>{contacts.phoneText}</a>.</p>
+    <a class="btn btn--solid" href={base}>На головну</a>
+  </section>
+</Base>

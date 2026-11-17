@@ -1,0 +1,18 @@
+---
+// The single wording of the target action across the page: «Подзвонити» / «Написати в Telegram».
+import Icon from "./Icon.astro";
+import { contacts } from "../data/site";
+interface Props { tone?: "paper" | "ink"; showNumber?: boolean; class?: string; rec?: string; }
+const { tone = "paper", showNumber = false, class: cls, rec } = Astro.props;
+---
+<div class:list={["actions", `actions--${tone}`, cls]} data-rec={rec}>
+  <a class="btn btn--solid" href={contacts.phoneHref}>
+    <Icon name="phone" />
+    <span>Подзвонити</span>
+    {showNumber && <span class="btn__extra tnum">{contacts.phoneText}</span>}
+  </a>
+  <a class="btn btn--line" href={contacts.telegram} rel="noopener" target="_blank">
+    <Icon name="telegram" />
+    <span>Написати в Telegram</span>
+  </a>
+</div>

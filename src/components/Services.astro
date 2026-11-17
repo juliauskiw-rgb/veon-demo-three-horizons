@@ -1,0 +1,85 @@
+---
+import Section from "./Section.astro";
+import FutureLink from "./FutureLink.astro";
+import CallButtons from "./CallButtons.astro";
+import { alsoInPractice, asset, serviceGroups } from "../data/site";
+const img = (name: string, suffix: string) => asset(`images/${name}-${suffix}.webp`);
+---
+<Section id="services" rec="R-003" class="services">
+  <div class="wrap grid services__grid" data-tabs>
+    <div class="services__side">
+      <h2 class="h2">Що лікуємо</h2>
+      <p class="services__intro">Оберіть, що вас турбує: послуги згруповані за проблемою, з якою приходять пацієнти.</p>
+      <div class="services__pick">
+      <div class="tabs" role="tablist" aria-label="Групи послуг" aria-orientation="vertical" data-tablist>
+        {serviceGroups.map((g, i) => (
+          <button class="tabs__tab" type="button" role="tab" id={`tab-${g.id}`} aria-controls={g.id} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} data-tab={g.id}>
+            <span class="tabs__label">{g.tab}</span>
+            <span class="tabs__mark" aria-hidden="true"></span>
+          </button>
+        ))}
+      </div>
+      <div class="services__photos">
+        {serviceGroups.map((g, i) => (
+          <img
+            class:list={["services__photo", { "is-active": i === 0 }]}
+            data-photo={g.id}
+            src={img(g.photo.name, "480")}
+            srcset={`${img(g.photo.name, "480")} 480w, ${img(g.photo.name, g.photo.large[0])} ${g.photo.large[1]}w`}
+            sizes="(min-width: 1024px) 300px, 480px"
+            width={g.photo.small[0]}
+            height={g.photo.small[1]}
+            alt={g.photo.alt}
+            aria-hidden={i === 0 ? undefined : "true"}
+            loading="eager"
+            decoding="async"
+          />
+        ))}
+      </div>
+      </div>
+    </div>
+
+    <div class="services__panels on-axis">
+      {serviceGroups.map((g, i) => (
+        <details class="group" id={g.id} open={i === 0} data-group={g.id}>
+          <summary class="group__summary">
+            <h3 class="group__title" id={`h-${g.id}`}>{g.title}</h3>
+            <span class="group__chev" aria-hidden="true"></span>
+          </summary>
+          <div class="group__body">
+            <p class="group__lead">{g.lead}</p>
+            {g.mobilePhoto && (
+              <img
+                class="group__photo"
+                src={img(g.photo.name, "480")}
+                srcset={`${img(g.photo.name, "480")} 480w, ${img(g.photo.name, g.photo.large[0])} ${g.photo.large[1]}w`}
+                sizes="(min-width: 1024px) 480px, calc(100vw - 60px)"
+                width={g.photo.small[0]}
+                height={g.photo.small[1]}
+                alt={g.photo.alt}
+                loading="eager"
+                decoding="async"
+              />
+            )}
+            <ul class="group__list">
+              {g.items.map((item) => (
+                <li class="group__item">
+                  <span class="group__name">{item}</span>
+                  <FutureLink class="group__more">Детальніше</FutureLink>
+                </li>
+              ))}
+            </ul>
+            <CallButtons tone="ink" class="group__actions" />
+          </div>
+        </details>
+      ))}
+      <div class="services__also">
+        <p class="services__also-title">Також у практиці</p>
+        <ul class="services__also-list">
+          {alsoInPractice.map((m) => <li><FutureLink>{m}</FutureLink></li>)}
+        </ul>
+        <FutureLink class="services__all">Всі послуги</FutureLink>
+      </div>
+    </div>
+  </div>
+</Section>
